@@ -1,13 +1,13 @@
 import Foundation
 
-protocol XcodeFinder {
+public protocol XcodeFinder {
     associatedtype Loader: DataLoader
     var dataLoader: Loader { get }
     func findXcodes() -> [Application]
 }
 
 extension XcodeFinder {
-    func find(_ version: String) -> Application? {
+    public func find(_ version: String) -> Application? {
         let xcodes = findXcodes()
         if let xcode = xcodes.first(where: { $0.version?.identifier == version }) {
             return xcode
@@ -28,7 +28,7 @@ extension XcodeFinder {
 
 public struct SpotlightXcodeFinder: XcodeFinder {
     typealias Loader = FileSystemDataLoader
-    let dataLoader: FileSystemDataLoader = FileSystemDataLoader()
+    public let dataLoader: FileSystemDataLoader = FileSystemDataLoader()
 
     public init() {}
 
