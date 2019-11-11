@@ -8,13 +8,13 @@ public protocol XcodeFinder {
 extension XcodeFinder {
     public func find(_ version: String) -> Application? {
         let xcodes = findXcodes()
-        if let xcode = xcodes.first(where: { $0.version?.identifier == version }) {
+        if let xcode = xcodes.first(where: { $0.version == version }) {
             return xcode
         }
 
         guard let matchingMaxVersion = (
             xcodes
-                .filter { $0.version?.identifier.hasPrefix(version) ?? false }
+                .filter { $0.version?.hasPrefix(version) ?? false }
                 .compactMap { $0.versionCode }
                 .max()
             ) else {

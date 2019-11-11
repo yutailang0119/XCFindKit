@@ -11,7 +11,7 @@ final class XcodeFinderTests: XCTestCase {
         let result = xcodes
             .filter { $0.version != nil }
             .sorted { $0.versionCode! < $1.versionCode! }
-            .reduce(into: [:]) { $0[$1.version!.identifier] = $1.path.path }
+            .reduce(into: [:]) { $0[$1.version] = $1.path.path }
         XCTAssertEqual(
             result,
             [

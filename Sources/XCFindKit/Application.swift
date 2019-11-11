@@ -2,20 +2,24 @@ import Foundation
 
 public struct Application {
     public let path: URL
-    public let version: Version?
+    private let _version: Version?
 
     init(path: URL, dataLoader: DataLoader) {
         self.path = path
         let versionPlistPath = path
             .appendingPathComponent("Contents")
             .appendingPathComponent("version.plist")
-        self.version = Version(from: versionPlistPath, dataLoader: dataLoader)
+        self._version = Version(from: versionPlistPath, dataLoader: dataLoader)
+    }
+
+    var version: String? {
+        _version?.identifier
     }
 
     /// Covert version to sortable version
     /// 10.2 -> 102
     var versionCode: Int? {
-        return version?.identifier
+        return version?
             .split(separator: ".")
             .map(String.init)
             .compactMap(Int.init)
@@ -29,7 +33,7 @@ public struct Application {
 }
 
 extension Application {
-    public struct Version: Decodable {
+    private struct Version: Decodable {
         let identifier: String
 
         init?(from versionPlistPath: URL, dataLoader: DataLoader) {
