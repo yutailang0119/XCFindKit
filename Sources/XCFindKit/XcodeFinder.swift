@@ -13,17 +13,16 @@ extension XcodeFinder {
             return xcode
         }
 
-        let versionMap: [Int: Application] = xcodes.reduce(into: [:]) { (result, xcode) in
-            guard let versionCode = xcode.versionCode else {
-                return
-            }
-            result[versionCode] = xcode
+        guard let matchingMaxVersion = (
+            xcodes
+                .filter { $0.version?.identifier.hasPrefix(version) ?? false }
+                .compactMap { $0.versionCode }
+                .max()
+            ) else {
+                return nil
         }
         return xcodes
-            .filter { $0.version?.identifier.hasPrefix(version) ?? false }
-            .compactMap { $0.versionCode }
-            .max()
-            .flatMap { versionMap[$0] }
+            .last { $0.versionCode == matchingMaxVersion }
     }
 }
 
