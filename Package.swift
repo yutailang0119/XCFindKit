@@ -7,8 +7,8 @@ let package = Package(
     name: "XCFindKit",
     products: [
         .executable(
-            name: "xcfind",
-            targets: ["xcfind"]),
+            name: "xcode-find",
+            targets: ["xcode-find"]),
         .library(
             name: "XCFindKit",
             targets: ["XCFindKit"]),
@@ -17,7 +17,7 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "xcfind",
+            name: "xcode-find",
             dependencies: ["XCFindKit"]),
         .target(
             name: "XCFindKit",
