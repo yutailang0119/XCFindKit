@@ -9,7 +9,7 @@ struct FindTool: Tool {
     }
 
     func run() {
-        let finder = SpotlightXcodeFinder()
+        let finder = XCFindKit.SpotlightXcodeFinder()
         guard let xcode = finder.find(version) else {
             print("Not Found selected version Xcode")
             return
