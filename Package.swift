@@ -5,6 +5,9 @@ import PackageDescription
 
 let package = Package(
     name: "XCFindKit",
+    platforms: [
+        .macOS(.v10_10),
+    ],
     products: [
         .executable(
             name: "xcode-find",
@@ -25,5 +28,6 @@ let package = Package(
         .testTarget(
             name: "XCFindKitTests",
             dependencies: ["XCFindKit"]),
-    ]
+    ],
+    swiftLanguageVersions: [.v5]
 )
