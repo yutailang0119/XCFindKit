@@ -95,7 +95,7 @@ let package = Package(
 )
 ```
 
-### Usege
+### Usage
 
 ```swift
 import XCFindKit
