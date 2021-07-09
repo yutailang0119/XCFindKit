@@ -50,7 +50,7 @@ $ swift build
 // And copy generated binary under executable path.
 ```
 
-### Usege
+### Usage
 
 ```
 Usage: xcode-find [options]
